@@ -1,0 +1,59 @@
+<h1 class="title">Login</h1>
+
+<br><br><br>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= form_for "Login",
+      url: omniauth_authorize_path(resource_name, provider),
+      method: :post,
+      data: {turbo: "false"} do |f| %>
+        <div class="google button">
+          <div class="g-oath-button-logo"></div>
+          <%= f.submit "Sign in with Google", :class => "g-oath-button-text" %>
+        </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<br><br>
+
+<div class="horiz-container2 full-width">
+  <span class="inline-hr"></span>
+  <h2 class="centered green-text">OR</h2>
+  <span class="inline-hr"></span>
+</div>
+
+<br><br>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email" %>
+  </div>
+  
+  <div class="field">
+    <%= f.password_field :password, placeholder: "Password", autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field" style="display: flex; flex-direction: row;">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, :class => "no-margins" %>
+    </div>
+  <% end %>
+
+  <br>
+
+  <div class="horiz-container">
+    <div class="actions">
+      <%= f.submit "LOGIN", :class => "green button" %>
+    </div>
+
+    
+
+    
+  </div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>

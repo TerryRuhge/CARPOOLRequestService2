@@ -1,0 +1,46 @@
+<h1 class="title">Whitelist</h1>
+
+<br><br>
+
+<div class="horiz-container">
+  <% if current_member&.is_supervisor %>
+    <%= link_to 'Button Control', button_control_path, :class => "grey button small-margins" %>
+  <% end %>
+  <%= link_to 'Whitelisting', whitelists_path, :class => "green button small-margins" %>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Add Email', new_whitelist_path, class: "blue button  hide-on-mobile-only" %>
+
+<br><br>
+
+<div class="view-table hide-on-mobile-only">
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @whitelists.each do |whitelist| %>
+        <tr>
+          <td><%= whitelist.email %></td>
+          <td class="b-cell"><%= link_to 'Edit', edit_whitelist_path(whitelist), class: "orange table button" %></td>
+          <td class="b-cell"><%= button_to 'Remove', whitelist, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
+</div>
