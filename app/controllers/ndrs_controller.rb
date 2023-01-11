@@ -96,11 +96,11 @@ class NdrsController < ApplicationController
   def button_control
     if current_member.is_admin
       @curr_ndr = Ndr.find_by(is_active: true)
-      if !@curr_ndr.nil?
+      if @curr_ndr.nil?
+        @ndr_active = false
+      else
         @ndr_active = true
         @active = @curr_ndr.button_override != true
-      else
-        @ndr_active = false
       end
     else
       redirect_to :root

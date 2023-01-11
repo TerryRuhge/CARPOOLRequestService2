@@ -33,16 +33,16 @@ class RequestsController < ApplicationController
                   end
     end
 
-    @wait_avg = if !@wait_avg.nil?
-                  (@wait_avg.to_f / @requests.count)
-                else
+    @wait_avg = if @wait_avg.nil?
                   0
+                else
+                  (@wait_avg.to_f / @requests.count)
                 end
 
-    @trip_avg = if !@trip_avg.nil?
-                  (@trip_avg.to_f / @requests.count)
-                else
+    @trip_avg = if @trip_avg.nil?
                   0
+                else
+                  (@trip_avg.to_f / @requests.count)
                 end
 
     if @requests.nil?
