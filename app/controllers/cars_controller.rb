@@ -15,16 +15,14 @@ class CarsController < ApplicationController
     @drivers = Driver.all.where(ndr_id: ndr_id)
     p @drivers
     @drivers.each do |driver|
-      if @cars.nil?
-        @cars = Car.all.where(car_id: driver.car_id)
-      else
-        @cars = @cars + Car.all.where(car_id: driver.car_id)
-      end
+      @cars = if @cars.nil?
+                Car.all.where(car_id: driver.car_id)
+              else
+                @cars + Car.all.where(car_id: driver.car_id)
+              end
     end
 
-    if !@cars.nil?
-      @cars = @cars.uniq
-    end
+    @cars = @cars.uniq unless @cars.nil?
   end
 
   # GET /cars/1 or /cars/1.json
