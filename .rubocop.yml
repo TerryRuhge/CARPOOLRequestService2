@@ -7,9 +7,8 @@ inherit_from: .rubocop_todo.yml
 # one by one as the offenses are removed from the code base.
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
-
-inherit_from: .rubocop_todo.yml
-
+AllCops:
+  NewCops: enable
 # Offense count: 3
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:

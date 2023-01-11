@@ -67,10 +67,10 @@ class DriversController < ApplicationController
   # POST /driver/checkin_update
   def checkin_update
     @driver = Driver.find_by(member_id: current_member.member_id, ndr_id: Ndr.find_by(is_active: true))
-    if params[:driver_status] != 'Other'
-      @driver.update_attribute(:driver_status, params[:driver_status])
-    else
+    if params[:driver_status] == 'Other'
       @driver.update_attribute(:driver_status, params[:driver_status_other])
+    else
+      @driver.update_attribute(:driver_status, params[:driver_status])
     end
     # @driver.update_attribute(:driver_status, :driver_status)
     @driver.update_attribute(:check_in_time, DateTime.now)
